@@ -1,6 +1,9 @@
 
 package frontend;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author CIROSS
@@ -13,6 +16,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public VistaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        ImageIcon img = new ImageIcon(getClass().getResource("/frontend/images/inicio.jpg"));
+        jLabelFondo.setIcon(new ImageIcon(img.getImage().getScaledInstance(this.jLabelFondo.getWidth(), this.jLabelFondo.getHeight(), Image.SCALE_SMOOTH)));
+        
     }
 
     /**
@@ -24,9 +31,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelTitulo = new javax.swing.JLabel();
         jButtonIngresoApuestas = new javax.swing.JButton();
         jButtonResultados = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelFondo = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuNuevaCarrera = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -34,28 +42,35 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabelTitulo.setBackground(new java.awt.Color(0, 204, 204));
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setText("APUESTAS HIPODROMO");
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+
+        jButtonIngresoApuestas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonIngresoApuestas.setText("Ingreso de Apuestas");
         jButtonIngresoApuestas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIngresoApuestasActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonIngresoApuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 112, -1, -1));
+        getContentPane().add(jButtonIngresoApuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, -1, -1));
 
+        jButtonResultados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonResultados.setText("Resultados");
         jButtonResultados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonResultadosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonResultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 170, -1, -1));
+        getContentPane().add(jButtonResultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, -1, -1));
 
-        jLabel1.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel1.setEnabled(false);
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -28, 400, 530));
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontend/images/inicio.jpg"))); // NOI18N
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 760, 470));
 
         jMenuBar.setBackground(new java.awt.Color(204, 204, 255));
+        jMenuBar.setOpaque(true);
 
         jMenuNuevaCarrera.setText("Archivo");
 
@@ -85,7 +100,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIngresoApuestas;
     private javax.swing.JButton jButtonResultados;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jMenuNuevaCarrera;

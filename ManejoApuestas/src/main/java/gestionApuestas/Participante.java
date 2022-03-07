@@ -9,7 +9,7 @@ public class Participante {
     
     private String nombre;
     private String monto;
-    private int puntuacionFinal = 0;
+    private int puntuacionFinal;
     private int[] orden;
     
     private Participante siguiente, anterior;
@@ -22,6 +22,7 @@ public class Participante {
         this.nombre = nombre;
         this.monto = monto;
         this.orden = orden;
+        puntuacionFinal = 0;
     }
     
     public Object[] getArray() {

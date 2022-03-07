@@ -1,18 +1,47 @@
 
 package frontend;
 
+import gestionApuestas.ControlApuestas;
+import gestionApuestas.ListaApostadores;
+import gestionApuestas.Participante;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author CIROSS
  */
 public class Resultados extends javax.swing.JFrame {
 
+    private ControlApuestas apuesta = new ControlApuestas();
+    ListaApostadores lista;
+    DefaultTableModel modeloTabla = new DefaultTableModel(); 
     /**
      * Creates new form Resultados
      */
     public Resultados() {
         initComponents();
         setLocationRelativeTo(null);
+        lista = apuesta.getApuestasAprobadas();
+        inicializarTabla();
+    }
+    
+    private void inicializarTabla() {
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Monto");
+        modeloTabla.addColumn("1o.");
+        modeloTabla.addColumn("2o.");
+        modeloTabla.addColumn("3o.");
+        modeloTabla.addColumn("4o.");
+        modeloTabla.addColumn("5o.");
+        modeloTabla.addColumn("6o.");
+        modeloTabla.addColumn("7o.");
+        modeloTabla.addColumn("8o.");
+        modeloTabla.addColumn("9o.");
+        modeloTabla.addColumn("10o.");
+        modeloTabla.addColumn("Punteo");
+
+        this.jTable1.setModel(modeloTabla);
     }
 
     /**
@@ -165,6 +194,11 @@ public class Resultados extends javax.swing.JFrame {
         jButtonEditar.setText("Editar");
 
         jButtonValidar.setText("Validar");
+        jButtonValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValidarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -312,7 +346,8 @@ public class Resultados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOrdenarPuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPuntosActionPerformed
-        // TODO add your handling code here:
+        apuesta.ordenarPuntos();
+        actualizarTabla();
     }//GEN-LAST:event_jButtonOrdenarPuntosActionPerformed
 
     private void jButtonOrdenarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreActionPerformed
@@ -332,6 +367,82 @@ public class Resultados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1GanadorActionPerformed
 
+    private void jButtonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarActionPerformed
+        if(jTextField1ro.getText().equals("") || jTextField2do.getText().equals("") || jTextField3ro.getText().equals("") || jTextField4to.getText().equals("")  
+            || jTextField5to.getText().equals("") || jTextField6to.getText().equals("") || jTextField7mo.getText().equals("") 
+            || jTextField8vo.getText().equals("") || jTextField9no.getText().equals("") || jTextField10mo.getText().equals("")) {
+            
+            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
+            
+        } else {
+            
+            String[] datos = {jTextField1ro.getText(),jTextField2do.getText(),jTextField3ro.getText(),jTextField4to.getText(),jTextField5to.getText(),
+                            jTextField6to.getText(),jTextField7mo.getText(),jTextField8vo.getText(),jTextField9no.getText(),jTextField10mo.getText()};
+            
+            definirOrden(datos);
+            apuesta.calcularPuntos();
+            mostrarTabla();
+            JOptionPane.showMessageDialog(this, "Resultados validados");
+            
+        }
+    }//GEN-LAST:event_jButtonValidarActionPerformed
+
+    public void mostrarTabla() {
+        
+        Participante participante = lista.getRaiz();
+        
+        for (int i = 0; i < lista.getTotalParticipantes(); i++) {
+            modeloTabla.addRow(participante.getArray());
+            participante = participante.getSiguiente();
+            
+        }
+    }
+    
+    public void actualizarTabla() {
+        
+        Participante participante = lista.getRaiz();
+        
+        for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+            modeloTabla.setValueAt(participante.getNombre(), i, 0);
+            modeloTabla.setValueAt(participante.getMonto(), i, 1);
+            modeloTabla.setValueAt(participante.getOrden()[0], i, 2);
+            modeloTabla.setValueAt(participante.getOrden()[1], i, 3);
+            modeloTabla.setValueAt(participante.getOrden()[2], i, 4);
+            modeloTabla.setValueAt(participante.getOrden()[3], i, 5);
+            modeloTabla.setValueAt(participante.getOrden()[4], i, 6);
+            modeloTabla.setValueAt(participante.getOrden()[5], i, 7);
+            modeloTabla.setValueAt(participante.getOrden()[6], i, 8);
+            modeloTabla.setValueAt(participante.getOrden()[7], i, 9);
+            modeloTabla.setValueAt(participante.getOrden()[8], i, 10);
+            modeloTabla.setValueAt(participante.getOrden()[9], i, 11);
+            modeloTabla.setValueAt(participante.getPuntuacionFinal(), i, 12);
+            
+        }
+
+    }
+    
+    public void definirOrden(String[] datos) {
+        
+        int[] orden = new int[10];
+
+        try {
+            orden[0] = Integer.parseInt(datos[0].strip());
+            orden[1] = Integer.parseInt(datos[1].strip());
+            orden[2] = Integer.parseInt(datos[2].strip());
+            orden[3] = Integer.parseInt(datos[3].strip());
+            orden[4] = Integer.parseInt(datos[4].strip());
+            orden[5] = Integer.parseInt(datos[5].strip());
+            orden[6] = Integer.parseInt(datos[6].strip());
+            orden[7] = Integer.parseInt(datos[7].strip());
+            orden[8] = Integer.parseInt(datos[8].strip());
+            orden[9] = Integer.parseInt(datos[9].strip());
+
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }    
+
+        apuesta.setOrdenCaballos(orden);
+    }
     @Override
     public void dispose() {
         VistaPrincipal vp = new VistaPrincipal();

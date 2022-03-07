@@ -10,7 +10,7 @@ public class ControlApuestas {
     private static ListaApostadores apuestasAprobadas = new ListaApostadores();
     private static ListaApostadores apuestasRechazadas = new ListaApostadores();
 
-    private int [] ordenCaballos = new int[10];
+    private static int [] ordenCaballos = new int[10];
     
     public void ingresarApuesta(String[] datos) {
         
@@ -44,7 +44,7 @@ public class ControlApuestas {
         }
     }
     
-    private void verificarSimple() {
+    public void verificarSimple() {
         
         Participante participante = apostadores.getRaiz();
         
@@ -242,6 +242,14 @@ public class ControlApuestas {
         part2.setAnterior(aux.getAnterior());
         part2.setSiguiente(aux.getSiguiente());
         
+    }
+
+    public int[] getOrdenCaballos() {
+        return ordenCaballos;
+    }
+
+    public void setOrdenCaballos(int[] ordenCaballos) {
+        this.ordenCaballos = ordenCaballos;
     }
     
     public ListaApostadores getApostadores() {

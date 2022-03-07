@@ -26,6 +26,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cerrar y verificar apuestas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemVerificarYCierreActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

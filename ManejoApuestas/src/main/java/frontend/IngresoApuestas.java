@@ -100,6 +100,11 @@ public class IngresoApuestas extends javax.swing.JFrame {
         jMenuCierre.setText("Cierre de Apuestas");
 
         jMenuItemVerificarYCierre.setText("Cerrar y verificar apuestas");
+        jMenuItemVerificarYCierre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemVerificarYCierreActionPerformed(evt);
+            }
+        });
         jMenuCierre.add(jMenuItemVerificarYCierre);
 
         jMenuBar1.add(jMenuCierre);
@@ -148,6 +153,10 @@ public class IngresoApuestas extends javax.swing.JFrame {
         insertarParticipante(lista.getRaiz());
         
     }//GEN-LAST:event_jButtonArchivoActionPerformed
+
+    private void jMenuItemVerificarYCierreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerificarYCierreActionPerformed
+        apuesta.verificarSimple();
+    }//GEN-LAST:event_jMenuItemVerificarYCierreActionPerformed
 
     public void insertarParticipante(Participante participante) {
         
